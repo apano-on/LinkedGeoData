@@ -34,15 +34,10 @@ source		SELECT  id,
 			ST_Y(geom) y
 			FROM nodes
 
-mappingId	lgd_node_tags_resource_k
+mappingId	lgd_node_tags_resource_all
 target		lgd:node{node_id} a <{object}> .
 source		SELECT *
-			FROM lgd_node_tags_resource_k
-
-mappingId	lgd_node_tags_resource_kv
-target		lgd:node{node_id} a <{object}> .
-source		SELECT *
-			FROM lgd_node_tags_resource_kv WHERE property='http://www.w3.org/1999/02/22-rdf-syntax-ns#type'
+			FROM lgd_node_tags_resource_all
 
 mappingId	lgd_node_tags_int
 target		lgd:node{node_id} <{property}> {v}^^xsd:int .
@@ -730,15 +725,10 @@ target		lgd:nodeseq{node_id}/{way_id} lgdo:sequence_id {sid}^^xsd:int .
 source		SELECT *, sequence_id + 1 AS sid
 			FROM way_nodes
 
-mappingId	lgd_way_tags_resource_k
+mappingId	lgd_way_tags_resource_all
 target		lgd:way{way_id} a <{object}> .
 source		SELECT *
-			FROM lgd_way_tags_resource_k
-
-mappingId	lgd_way_tags_resource_kv
-target		lgd:way{way_id} a <{object}> .
-source		SELECT *
-			FROM lgd_way_tags_resource_kv WHERE property='http://www.w3.org/1999/02/22-rdf-syntax-ns#type'
+			FROM lgd_way_tags_resource_all
 
 mappingId	lgd_way_tags_int
 target		lgd:way{way_id} <{property}> {v}^^xsd:int .
@@ -1465,15 +1455,10 @@ source		SELECT *, sequence_id + 1 AS sid
 			FROM relation_members
 			WHERE member_type = 'R'
 
-mappingId	lgd_relation_tags_resource_k
+mappingId	lgd_relation_tags_resource_all
 target		lgd:relation{relation_id} a <{object}> .
 source		SELECT *
-			FROM lgd_relation_tags_resource_k
-
-mappingId	lgd_relation_tags_resource_kv
-target		lgd:relation{relation_id} a <{object}> .
-source		SELECT *
-			FROM lgd_relation_tags_resource_kv WHERE property='http://www.w3.org/1999/02/22-rdf-syntax-ns#type'
+			FROM lgd_relation_tags_resource_all
 
 mappingId	lgd_relation_tags_int
 target		lgd:relation{relation_id} <{property}> {v}^^xsd:int .

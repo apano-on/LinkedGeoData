@@ -141,6 +141,21 @@ CREATE VIEW lgd_node_tags_resource_kv AS
 -- WHERE
 --  b.k NOT IN (SELECT c.k FROM lgd_map_datatype c);
 
+-- This provides better Ontop performance for superclasses
+DROP VIEW IF EXISTS lgd_node_tags_resource_kv_all;
+CREATE VIEW lgd_node_tags_resource_all AS
+  SELECT node_id, "object"
+  FROM
+   ((SELECT a.node_id, b.property, b.object "object"
+      FROM node_tags a
+      JOIN lgd_map_resource_kv b ON (b.k, b.v) = (a.k, a.v)
+      WHERE b.property = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type'
+    )
+    UNION ALL
+    (SELECT a.node_id, c.property, c.object "object"
+      FROM node_tags a
+      JOIN lgd_map_resource_k c ON a.k=c.k
+    )) q0;
 
 -- A default mapping is applied if the (k) is in resource_kd, but (k, v) is not in resource_kv
 DROP VIEW IF EXISTS lgd_node_tags_resource_kd;
@@ -304,6 +319,21 @@ CREATE VIEW lgd_way_tags_resource_kv AS
 -- WHERE
 --  b.k NOT IN (SELECT c.k FROM lgd_map_datatype c);
 
+-- This provides better Ontop performance for superclasses
+DROP VIEW IF EXISTS lgd_way_tags_resource_kv_all;
+CREATE VIEW lgd_way_tags_resource_kv_all AS
+  SELECT way_id, "object"
+  FROM
+   ((SELECT a.way_id, b.property, b.object "object"
+      FROM way_tags a
+      JOIN lgd_map_resource_kv b ON (b.k, b.v) = (a.k, a.v)
+      WHERE b.property = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type'
+    )
+    UNION ALL
+    (SELECT a.way_id, c.property, c.object "object"
+      FROM way_tags a
+      JOIN lgd_map_resource_k c ON a.k=c.k
+    )) q0;
 
 DROP VIEW IF EXISTS lgd_way_tags_resource_kd;
 CREATE VIEW lgd_way_tags_resource_kd AS
@@ -457,6 +487,21 @@ CREATE VIEW lgd_relation_tags_resource_kv AS
 -- WHERE
 --  b.k NOT IN (SELECT c.k FROM lgd_map_datatype c);
 
+-- This provides better Ontop performance for superclasses
+DROP VIEW IF EXISTS lgd_relation_tags_resource_kv_all;
+CREATE VIEW lgd_relation_tags_resource_kv_all AS
+  SELECT node_id, "object"
+  FROM
+   ((SELECT a.relation_id, b.property, b.object "object"
+      FROM relation_tags a
+      JOIN lgd_map_resource_kv b ON (b.k, b.v) = (a.k, a.v)
+      WHERE b.property = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type'
+    )
+    UNION ALL
+    (SELECT a.relation_id, c.property, c.object "object"
+      FROM relation_tags a
+      JOIN lgd_map_resource_k c ON a.k=c.k
+    )) q0;
 
 DROP VIEW IF EXISTS lgd_relation_tags_resource_kd;
 CREATE VIEW lgd_relation_tags_resource_kd AS
