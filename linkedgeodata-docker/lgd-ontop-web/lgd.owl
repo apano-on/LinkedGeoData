@@ -5494,7 +5494,6 @@
     <!-- http://linkedgeodata.org/ontology/Allotments -->
 
     <owl:Class rdf:about="http://linkedgeodata.org/ontology/Allotments"/>
-    </owl:Class>
 
 
 
