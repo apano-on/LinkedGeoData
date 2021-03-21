@@ -142,7 +142,7 @@ CREATE VIEW lgd_node_tags_resource_kv AS
 --  b.k NOT IN (SELECT c.k FROM lgd_map_datatype c);
 
 -- This provides better Ontop performance for superclasses
-DROP VIEW IF EXISTS lgd_node_tags_resource_kv_all;
+DROP VIEW IF EXISTS lgd_node_tags_resource_all;
 CREATE VIEW lgd_node_tags_resource_all AS
   SELECT node_id, "object"
   FROM
@@ -320,8 +320,8 @@ CREATE VIEW lgd_way_tags_resource_kv AS
 --  b.k NOT IN (SELECT c.k FROM lgd_map_datatype c);
 
 -- This provides better Ontop performance for superclasses
-DROP VIEW IF EXISTS lgd_way_tags_resource_kv_all;
-CREATE VIEW lgd_way_tags_resource_kv_all AS
+DROP VIEW IF EXISTS lgd_way_tags_resource_all;
+CREATE VIEW lgd_way_tags_resource_all AS
   SELECT way_id, "object"
   FROM
    ((SELECT a.way_id, b.property, b.object "object"
@@ -488,8 +488,8 @@ CREATE VIEW lgd_relation_tags_resource_kv AS
 --  b.k NOT IN (SELECT c.k FROM lgd_map_datatype c);
 
 -- This provides better Ontop performance for superclasses
-DROP VIEW IF EXISTS lgd_relation_tags_resource_kv_all;
-CREATE VIEW lgd_relation_tags_resource_kv_all AS
+DROP VIEW IF EXISTS lgd_relation_tags_resource_all;
+CREATE VIEW lgd_relation_tags_resource_all AS
   SELECT node_id, "object"
   FROM
    ((SELECT a.relation_id, b.property, b.object "object"
