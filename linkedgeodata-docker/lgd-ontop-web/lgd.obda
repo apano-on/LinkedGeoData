@@ -92,7 +92,7 @@ source		SELECT *
 			AND language='ja'
 
 mappingId	lgd_node_tags_text_lang_fr
-target		lgd:node{node_id} rdfs:label {v}@fr .
+target		lgd:node{node_id} rdfs:label {v}@en-tt .
 source		SELECT *
 			FROM lgd_node_tags_text
 			WHERE property='http://www.w3.org/2000/01/rdf-schema#label'
@@ -786,7 +786,7 @@ source		SELECT *
 
 
 mappingId	lgd_way_tags_text_lang_fr
-target		lgd:way{way_id} rdfs:label {v}@fr .
+target		lgd:way{way_id} rdfs:label {v}@en-tt .
 source		SELECT *
 			FROM lgd_way_tags_text
 			WHERE property='http://www.w3.org/2000/01/rdf-schema#label'
@@ -1521,7 +1521,7 @@ source		SELECT *
 
 
 mappingId	lgd_relation_tags_text_lang_fr
-target		lgd:relation{relation_id} rdfs:label {v}@fr .
+target		lgd:relation{relation_id} rdfs:label {v}@en-tt .
 source		SELECT *
 			FROM lgd_relation_tags_text
 			WHERE property='http://www.w3.org/2000/01/rdf-schema#label'
