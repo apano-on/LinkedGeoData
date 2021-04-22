@@ -323,9 +323,9 @@ Also, its only needed to build the jar that contains nominatim - once it is depl
 			</dependency>
 
 			<dependency>
-				<groupId>postgresql</groupId>
+				<groupId>org.postgresql</groupId>
 				<artifactId>postgresql</artifactId>
-				<version>8.4-701.jdbc4</version>
+				<version>42.2.19</version>
 				<!-- <version>9.3-1100-jdbc41</version> -->
 			</dependency>
 
