@@ -13,17 +13,18 @@ obda:		https://w3id.org/obda/vocabulary#
 rdfs:		http://www.w3.org/2000/01/rdf-schema#
 dcterms:		http://purl.org/dc/terms/
 spatial:		http://geovocab.org/spatial#
+geom:			http://geovocab.org/geometry#
 lgd-geom:	http://linkedgeodata.org/geometry/
 
 [MappingDeclaration] @collection [[
 mappingId	lgd_nodes_1
-target		lgd:node{id} a lgdm:Node , geo:Feature ; lgdo:version {version}^^xsd:int ; dcterms:contributor lgd:user{user_id} ; dcterms:modified {tstamp}^^xsd:dateTime ; lgdo:changeset {changeset_id}^^xsd:int .
+target		lgd:node{id} a lgdm:Node , geo:Feature ; geo:hasGeometry geom:geometry{geom} ; lgdo:version {version}^^xsd:int ; dcterms:contributor lgd:user{user_id} ; dcterms:modified {tstamp}^^xsd:dateTime ; lgdo:changeset {changeset_id}^^xsd:int .
 source		SELECT *
 			FROM nodes
 
 mappingId	lgd_nodes_2_1
-target		lgd:node{id} a geo:Geometry ; geo:asWKT {x}^^geo:wktLiteral .
-source		SELECT id,
+target		geom:geometry{geom} a geo:Geometry ; geo:asWKT {x}^^geo:wktLiteral .
+source		SELECT id, geom,
 			ST_ASTEXT(geom) x
 			FROM nodes
 
