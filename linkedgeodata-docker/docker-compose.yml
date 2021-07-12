@@ -79,7 +79,6 @@ services:
       - ${PUBBY_PORT}:8080
     depends_on:
       - lgd-sparqlify-web
-#     - lgd-ontop-web
     networks:
       - lgd-net
 
@@ -87,17 +86,12 @@ services:
     env_file: .env
     build:
       context: ./lgd-ontop-web
-      args:
-        - ONTOP_DB_NAME=${DB_NAME}
-        - ONTOP_DB_USER=${DB_USER}
-        - ONTOP_DB_PASSWORD=${DB_PASS}
-        - ONTOP_DB_URL=${DB_TYPE_JDBC}://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/${DB_NAME}
     environment:
       - ONTOP_JAVA_ARGS=-Xmx2g
       - ONTOP_DB_NAME=${DB_NAME}
       - ONTOP_DB_USER=${DB_USER}
       - ONTOP_DB_PASSWORD=${DB_PASS}
-#      - ONTOP_DB_URL=${DB_TYPE}://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/${DB_NAME}
+      - ONTOP_DB_URL=${DB_TYPE_JDBC}://${DB_USER}:${DB_PASS}@${DB_HOST}:${DB_PORT}/${DB_NAME}
       - ONTOP_DEBUG=true
       - ONTOP_DEV_MODE=true
       - ONTOP_MAPPING_FILE=/opt/ontop/input/lgd.obda
@@ -105,34 +99,12 @@ services:
       - ONTOP_PROPERTIES_FILE=/opt/ontop/input/lgd.properties
       - ONTOP_XML_CATALOG_FILE=/opt/ontop/input/catalog-v001.xml
       - ONTOP_PORTAL_FILE=/opt/ontop/input/lgd.portal.toml
-#      - ONTOP_OPTS=${ONTOP_OPTS}
     ports:
       - ${ONTOP_PORT}:8080
     depends_on:
       - lgd-osm-sync
     networks:
       - lgd-net
-
-
-# possible future CKAN container for hosting downloads
-#  lgd-nominatim:
-#    build: lgd-nominatim
-#    dockerfile: Dockerfile
-#    container_name: lgd-nominatim
-#    restart: always
-#    depends_on:
-#      - lgd-db
-#    environment:
-#      - DATABASE_URL=postgresql://ckan:ckan@ckan-db:5432/ckan
-#      - SOLR_URL=http://ckan-solr:8983/solr/ckan
-#      - RECAPTCHA_PUBLIC_KEY=CHANGE_ME
-#      - RECAPTCHA_PRIVATE_KEY=CHANGE_ME
-#      - SITE_URL=http://ckan.vhost.tld
-#      - VIRTUAL_HOST=ckan.vhost.tld
-    #volumes:
-      #- /tmp/ckan-uploads:/var/lib/ckan
-#    networks:
-#      - lgd-net
 
 volumes:
   lgd-db-vol:
