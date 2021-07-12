@@ -1,6 +1,8 @@
 #!/bin/bash
-set -eu
 
-env | grep -i "ontop\|db\|post"
+echo "lgd-db environment:"
+env | grep -i "osm\|db\|post"
 
-cat input/lgd_temp.properties | envsubst > input/lgd.properties
+cat "/input/lgd_temp.properties" | envsubst > "/input/lgd.properties"
+
+docker-entrypoint.sh "$@"
