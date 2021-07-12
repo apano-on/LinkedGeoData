@@ -21,9 +21,10 @@ RUN chmod +x ./create-properties.sh && sleep 1
 
 ENTRYPOINT ["./create-properties.sh"]
 #RUN envsubst <input/lgd_temp.properties> lgd.properties
+#RUN ./create-properties.sh
 
 RUN env
-RUN cat input/lgd.properties
+#RUN cat input/lgd.properties
 
 EXPOSE 8080
 
