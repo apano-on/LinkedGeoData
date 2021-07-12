@@ -15,9 +15,11 @@ RUN sleep 3
 
 RUN apt-get update && apt-get install -y gettext-base
 ADD lgd.properties input/lgd_temp.properties
-RUN ./create-properties.sh
+#RUN ./create-properties.sh
 
+RUN chmod +x ./create-properties.sh && sleep 1
 
+ENTRYPOINT ["./create-properties.sh"]
 #RUN envsubst <input/lgd_temp.properties> lgd.properties
 
 RUN env
